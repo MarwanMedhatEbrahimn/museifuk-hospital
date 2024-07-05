@@ -1,0 +1,108 @@
+<div class="m-3 dashboard-body">
+    <!-- header -->
+    <div class="d-flex justify-content-between align-items-center flex-wrap" style="margin-bottom: 30px;">
+        <h4 class="fw-bolder head-page">Departments</h4>
+        <div class="d-flex flex-wrap justify-content-center">
+            <div class="search-container me-md-4">
+                <img src="../../../assets/images/search.svg" class="search-icon" alt="">                  
+                <input (input)="search()" [(ngModel)]="searchKeyword" type="text" placeholder="Search All Departments" class="search-input">
+            </div>     
+            <button class="btn btn-AddNew" (click)="openAddEditDepartmentPage(true,{})"><i class="fa fa-plus"></i> Add New</button>
+        </div>
+    </div>
+
+    <div class="table_container">
+        <table class="w-100">
+            <thead class="table-header">
+                <tr class="table-row-header">
+                    <th style="padding-left: 16px;">Departments Name                            
+                    </th>
+                    <th>Beds Number                           
+                    </th>
+                    <th>Beds Available                           
+                    </th>
+                    <th>Create At                   
+                    </th>
+                    <th class="w-1">
+                    </th>
+                </tr>
+            </thead>
+            <tbody *ngIf='!isLoading && dataTable.length > 0 && !serverErrorFetch'>
+                <tr *ngFor="let row of dataTable" class="table-row-body">
+                    <td>{{row?.name}}</td>
+                    <td>{{row?.numberOfBeds}}</td>
+                    <td>{{row?.available}}</td>
+                    <td>{{row?.createdAt | dateFormat}}</td>
+                    <td><img (click)="openAddEditDepartmentPage(false, row)" style="cursor: pointer;" src="./../../../assets/images/edit.svg" alt="edit icon"></td>
+                </tr>
+            </tbody>
+            <tbody *ngIf='isLoading'>
+                <tr *ngFor="let row of loadingSchema" class="table-row-body">
+                    <td><ngx-skeleton-loader appearance="line"></ngx-skeleton-loader></td>
+                    <td><ngx-skeleton-loader appearance="line"></ngx-skeleton-loader></td>
+                    <td><ngx-skeleton-loader appearance="line"></ngx-skeleton-loader></td>
+                    <td><ngx-skeleton-loader appearance="line"></ngx-skeleton-loader></td>
+                    <td><ngx-skeleton-loader appearance="line"></ngx-skeleton-loader></td>
+                </tr>
+            </tbody>
+            <tbody *ngIf='!isLoading && dataTable.length == 0 && !serverErrorFetch'>
+                <tr>
+                    <td colspan="12"  class="no-data">
+                        There is no Department at the moment
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div *ngIf="serverErrorFetch" class="internal-server-error">
+            {{serverErrorFetch}}
+        </div>
+    </div>
+
+    <p-dialog [(visible)]="addDepartment" [modal]="true" [dismissableMask]="!isLoadingSubmit">
+        <form [formGroup]="addEditDepartment" #form="ngForm" (ngSubmit)="onSubmit()" class="pop-up">
+
+            <div class="row mb-5 pop-up-head">
+                <div class="col-md-12"> 
+                  <h3>{{isAdd?"Add":"Edit"}} Department</h3>
+                </div>
+            </div>
+            <div class="row mb-4">
+                <div class="col-md-12">
+                    <label for="team" class="form-label">Department name</label>
+                    <input type="text" formControlName="name" class="form-control" id="name">
+                    <app-form-errors
+                        [color]="'danger'"
+                        [form]="form"
+                        [control]="addEditDepartment.controls['name']"
+                    >
+                    </app-form-errors>
+                </div>
+            </div>
+            <div class="row mb-5 g-2">
+                <div class="col-md-12">
+                  <label for="title" class="form-label">Bed Number</label>
+                  <input type="text" formControlName="bed_number" class="form-control" id="bed_number">
+                  <app-form-errors
+                        [color]="'danger'"
+                        [form]="form"
+                        [control]="addEditDepartment.controls['bed_number']"
+                   >
+                   </app-form-errors>
+                </div>
+            </div>
+            <!-- Message Text -->
+            <div class="row mb-3 g-2 d-flex flex-row-reverse position-relative">
+                <div class="col-md-6"> 
+                    <button class="btn-submit" [disabled]="isLoadingSubmit?'disable':''" type="submit">
+                        {{isAdd? "Submit" : "Save Changes"}}
+                        <i *ngIf="isLoadingSubmit" class="fa-spin fas fa-spinner"></i>
+                    </button>
+                </div>
+                <div class="col-md-6">
+                  <button class="btn-Cancle" [disabled]="isLoadingSubmit?'disable':''" type="button" (click)="closeAddEditDepartmentPage()">Cancel</button>
+                </div>
+            </div>
+        </form>
+    </p-dialog>
+
+</div>

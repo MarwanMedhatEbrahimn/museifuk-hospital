@@ -1,0 +1,116 @@
+<div class="m-3 dashboard-body">
+    <!-- header -->
+    <div class="d-flex justify-content-between align-items-center flex-wrap" style="margin-bottom: 30px;">
+        <h4 class="fw-bolder head-page">Serums</h4>
+        <div class="d-flex flex-wrap justify-content-center">
+            <div class="search-container me-md-4">
+                <img src="../../../assets/images/search.svg" class="search-icon" alt="">                  
+                <input (input)="search()" [(ngModel)]="searchKeyword" type="text" placeholder="Search All Plasma" class="search-input">
+            </div>     
+            <button class="btn btn-AddNew" (click)="openAddEditPlasmaPage(true,{})"><i class="fa fa-plus"></i> Add New</button>
+        </div>
+    </div>
+
+    <div class="table_container">
+        <table class="w-100">
+            <thead class="table-header">
+                <tr class="table-row-header">
+                    <th style="padding-left: 16px;">Serums Name                            
+                    </th>
+                    <th>Quantity                           
+                    </th>
+                    <th>Expiry Date                   
+                    </th>
+                    <th class="w-1">
+                    </th>
+                </tr>
+            </thead>
+            <tbody *ngIf='!isLoading && dataTable.length > 0 && !serverErrorFetch'>
+                <tr *ngFor="let row of dataTable" class="table-row-body">
+                    <td>{{row?.name}}</td>
+                    <td>{{row?.quantity}}</td>
+                    <td>{{row?.expiry_date}}</td>
+                    <td><img (click)="openAddEditPlasmaPage(false, row)" style="cursor: pointer;" src="./../../../assets/images/edit.svg" alt="edit icon"></td>
+                </tr>
+            </tbody>
+            <tbody *ngIf='isLoading'>
+                <tr *ngFor="let row of loadingSchema" class="table-row-body">
+                    <td><ngx-skeleton-loader appearance="line"></ngx-skeleton-loader></td>
+                    <td><ngx-skeleton-loader appearance="line"></ngx-skeleton-loader></td>
+                    <td><ngx-skeleton-loader appearance="line"></ngx-skeleton-loader></td>
+                    <td><ngx-skeleton-loader appearance="line"></ngx-skeleton-loader></td>
+                </tr>
+            </tbody>
+            <tbody *ngIf='!isLoading && dataTable.length == 0 && !serverErrorFetch'>
+                <tr>
+                    <td colspan="12"  class="no-data">
+                        There is no Serums at the moment
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div *ngIf="serverErrorFetch" class="internal-server-error">
+            {{serverErrorFetch}}
+        </div>
+    </div>
+
+    <p-dialog [(visible)]="addPlasma" [modal]="true" [dismissableMask]="!isLoadingSubmit">
+        <form [formGroup]="addEditPlasma" #form="ngForm" (ngSubmit)="onSubmit()" class="pop-up">
+
+            <div class="row mb-5 pop-up-head">
+                <div class="col-md-12"> 
+                  <h3>{{isAdd?"Add":"Edit"}} Serums</h3>
+                </div>
+            </div>
+            <div class="row mb-4">
+                <div class="col-md-12">
+                    <label for="team" class="form-label">Serums name</label>
+                    <input type="text" formControlName="name" class="form-control" id="name">
+                    <app-form-errors
+                        [color]="'danger'"
+                        [form]="form"
+                        [control]="addEditPlasma.controls['name']"
+                    >
+                    </app-form-errors>
+                </div>
+            </div>
+            <div class="row mb-5 g-2">
+                <div class="col-md-12">
+                  <label for="title" class="form-label">Quantity</label>
+                  <input type="text" formControlName="quantity" class="form-control" id="quantity">
+                  <app-form-errors
+                        [color]="'danger'"
+                        [form]="form"
+                        [control]="addEditPlasma.controls['quantity']"
+                   >
+                   </app-form-errors>
+                </div>
+            </div>
+            <div class="row mb-5 g-2">
+                <div class="col-md-12">
+                  <label for="message" class="form-label">Expiry Date</label>
+                  <p-calendar [minDate]="minDate" formControlName="expiry_date" id="expiry_date" />
+                  <app-form-errors
+                    [color]="'danger'"
+                    [form]="form"
+                    [control]="addEditPlasma.controls['expiry_date']"
+                  >
+                  </app-form-errors>
+                </div>
+            </div>
+            <!-- Message Text -->
+            <div class="row mb-3 g-2 d-flex flex-row-reverse position-relative">
+                <div class="col-md-6"> 
+                    <button class="btn-submit" [disabled]="isLoadingSubmit?'disable':''" type="submit">
+                        {{isAdd? "Submit" : "Save Changes"}}
+                        <i *ngIf="isLoadingSubmit" class="fa-spin fas fa-spinner"></i>
+                    </button>
+                </div>
+                <div class="col-md-6">
+                  <button class="btn-Cancle" [disabled]="isLoadingSubmit?'disable':''" type="button" (click)="closeAddEditPlasmaPage()">Cancel</button>
+                </div>
+            </div>
+        </form>
+    </p-dialog>
+
+</div>

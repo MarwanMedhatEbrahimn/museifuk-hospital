@@ -1,0 +1,31 @@
+@import "../../../../../assets/styles/dropdown.scss";
+@import "../../../../../assets/styles/multiSelect.scss";
+@import "../../../../../assets/styles/buttons.scss";
+
+h4 {
+    color: var(--greyscale-900, #111827);
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 130%;
+}
+.form-control{
+    resize: none !important;
+}
+:host ::ng-deep p-dropdown.selectGroup .p-dropdown{
+    border-radius: 10px;
+    height: 56px;
+    width: 100%;
+    background-color: white;
+    border: 1px solid #e9eaec !important;
+}
+:host ::ng-deep p-dropdown.selectGroup .p-dropdown-label{
+    color: #A0BFDB;
+}
+label{
+    color: #111827;
+    font-family: "Manrope";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 160%;
+}

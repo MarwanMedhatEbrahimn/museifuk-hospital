@@ -1,0 +1,103 @@
+<div class="container-sidebar">
+    <div class="sidebar">
+      <div class="top-section">
+        <img
+          class="logo-site"
+          src="./assets/images/logo.png"
+          alt="logo"
+          width="140px"
+          height="80px"
+        />
+        <img
+          class="close-sidebar"
+          (click)="closeSidebar()"
+          src="./assets/images/ic-close.svg"
+          alt="close"
+        />
+      </div>
+      <div class="main-sidebar">
+        <ul class="main-ul">
+          <li>
+            <a
+              *ngIf="role=='Owner'"
+              class="nav-link overview"
+              routerLink="/dashboard/patients"
+              routerLinkActive
+              #patient="routerLinkActive"
+              [ngClass]="patient.isActive ? 'active' : ''"
+              (click)="closeSidebar()"
+            >
+              <span class="route-name">Patients</span>
+            </a>
+            <a
+              *ngIf="role=='Owner'"
+              class="nav-link overview"
+              routerLink="/dashboard/department"
+              routerLinkActive
+              #department="routerLinkActive"
+              [ngClass]="department.isActive ? 'active' : ''"
+              (click)="closeSidebar()"
+            >
+              <span class="route-name">Departments</span>
+            </a>
+            <a
+              *ngIf="role=='Owner'"
+              class="nav-link overview"
+              routerLink="/dashboard/medical_equipment"
+              routerLinkActive
+              #medical_equipment="routerLinkActive"
+              [ngClass]="medical_equipment.isActive ? 'active' : ''"
+              (click)="closeSidebar()"
+            >
+              <span class="route-name">Medical Equipment</span>
+            </a>
+            <a
+              *ngIf="role=='Owner'"
+              class="nav-link overview"
+              routerLink="/dashboard/serums"
+              routerLinkActive
+              #serums="routerLinkActive"
+              [ngClass]="serums.isActive ? 'active' : ''"
+              (click)="closeSidebar()"
+            >
+              <span class="route-name">Serums</span>
+            </a>    
+            <a
+              *ngIf="role=='Admin'"
+              class="nav-link overview"
+              routerLink="/dashboard/requests"
+              routerLinkActive
+              #requests="routerLinkActive"
+              [ngClass]="requests.isActive ? 'active' : ''"
+              (click)="closeSidebar()"
+            >
+              <span class="route-name">Requests</span>
+            </a> 
+            <a
+              *ngIf="role=='Admin'"
+              class="nav-link overview"
+              routerLink="/dashboard/drivers"
+              routerLinkActive
+              #drivers="routerLinkActive"
+              [ngClass]="drivers.isActive ? 'active' : ''"
+              (click)="closeSidebar()"
+            >
+              <span class="route-name">Drivers</span>
+            </a>  
+            <a
+              *ngIf="role=='Admin'"
+              class="nav-link overview"
+              routerLink="/dashboard/ambulance"
+              routerLinkActive
+              #ambulance="routerLinkActive"
+              [ngClass]="ambulance.isActive ? 'active' : ''"
+              (click)="closeSidebar()"
+            >
+              <span class="route-name">Ambulance Car</span>
+            </a>  
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  

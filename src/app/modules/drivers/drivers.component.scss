@@ -1,0 +1,90 @@
+@import "../../../assets/styles/pagination.scss";
+@import "../../../assets/styles/table.scss";
+@import "../../../assets/styles/links.scss";
+@import "../../../assets/styles/buttons.scss";
+@import "../../../assets/styles/popup.scss";
+@import "../../../assets/styles/dropdown.scss";
+
+
+.dashboard-body{
+    background-color: #ffffff;
+    border-radius: 10px;
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 25px 18px;
+}
+@media (max-width: 575px){
+    .dashboard-body{
+        padding: 25px 10px;
+    }
+}
+
+.search-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search-icon {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.search-input {
+    padding: 16px 20px 16px 50px;
+    width: 315px;
+    border-radius: 10px;
+    background-color: #f8f8f8;
+    outline: none;
+    border: none;   
+}
+@media (max-width: 575px) {
+    .search-input{
+        width: 275px;
+    }
+}
+.table-row-body td[title="Active"]{
+    color: #226F54;
+    font-weight: 700;
+}
+.table-row-body td[title="Inactive"]{
+    color: #8f1f17;
+    font-weight: 700;
+}
+.pop-up{
+    padding: 36px 60px;
+}
+.pop-up h4 {
+    color: var(--greyscale-900, #111827);
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 130%;
+}
+:host ::ng-deep .p-dialog .p-dialog-content{
+    min-height: fit-content;
+}
+.form-control{
+    resize: none !important;
+}
+:host ::ng-deep p-dropdown.selectGroup .p-dropdown{
+    border-radius: 10px;
+    height: 56px;
+    width: 100%;
+    background-color: white;
+    border: 1px solid #e9eaec !important;
+}
+:host ::ng-deep p-dropdown.selectGroup .p-dropdown-label{
+    color: #A0BFDB;
+}
+label{
+    color: #111827;
+    font-family: "Manrope";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 160%;
+}

@@ -1,0 +1,13 @@
+.Options_link{
+    color: black;
+    display: block;
+    padding: 0px 20px 10px 20px;
+    font-weight: 600;
+}
+.Options_link.active{
+    color: #226F54;
+    border-bottom:2px solid #226F54;
+}
+.Options_link.pop_options_link{
+    padding: 0px 30px 10px 30px;
+}

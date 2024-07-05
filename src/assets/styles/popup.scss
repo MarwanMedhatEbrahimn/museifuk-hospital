@@ -1,0 +1,25 @@
+:host ::ng-deep .p-dialog{
+    max-width: 700px;
+    width: 95% !important;
+    min-height: 500px;
+}
+:host ::ng-deep .p-dialog .p-dialog-content{
+    padding: 0;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+:host ::ng-deep .p-dialog .p-dialog-content{
+    min-height: 90vh;
+}
+:host ::ng-deep .p-dialog .p-dialog-header{
+    display: none;
+}
+:host ::ng-deep .header-popup{
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 27px;
+}

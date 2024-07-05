@@ -1,0 +1,64 @@
+<div class="body">
+    <table class="main-table">
+        <tbody>
+            <tr>
+                <td colspan="2">
+                    <span class="key me-3">Patient Name:</span>
+                    <span class="value">{{details.name}}</span>
+                </td>
+                <td>
+                    <span class="key me-3">Age:</span>
+                    <span class="value">{{details.age}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td class="text-center">
+                    <p class="key">Phone Num:</p>
+                    <p class="value">+1549226266</p>
+                </td>
+                <td class="text-center">
+                    <p class="key">Department:</p>
+                    <p class="value">{{details.department}}</p>
+                </td>
+                <td class="text-center">
+                    <p class="key">Registered:</p>
+                    <p class="value">{{details.assignedAt | dateFormat}}</p>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="mt-4">
+        <tbody>
+            <tr style="width: fit-content;">
+                <td class="key status">Status:</td>
+                <td class="value w-100">
+                    {{details.condition}}
+                </td>
+            </tr>
+            <tr *ngIf="details.equipmentNeeded.length!=0" >
+                <td class="key status">Equipment Needed:</td>
+                <td class="value w-100">
+                    <ul>
+                        <li *ngFor="let item of details.equipmentNeeded">
+                            {{item}}
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+            <tr *ngIf="details.serumsNeeded.length!=0" >
+                <td class="key status">Serums Needed:</td>
+                <td class="value w-100">
+                    <ul>
+                        <li *ngFor="let item of details.serumsNeeded">
+                            {{item}}
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="button-container">
+        <button class="btn" [disabled]="isLoading" (click)="removePatient(details.id)">Remove</button>
+    </div>
+</div>

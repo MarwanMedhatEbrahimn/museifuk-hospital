@@ -1,1 +1,227 @@
-/* You can add global styles to this file, and also import other style files */
+@import "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap";
+@import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeng/resources/primeng.css";
+
+:root {
+  --main-color: #81cfd2;
+  --main-background: #fafbfc;
+  --white-color: #fff;
+  --main-color-text: #111827;
+  --second-color-text: #000;
+  --header-main-size: 24px;
+  --header-lg-size: 48px;
+  --main-size-text: 16px;
+  --lg-size-text: 20px;
+  --md-size-text: 18px;
+  --sm-size-text: 16px;
+  --xs-size-text: 14px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Manrope", sans-serif;
+  background-color: var(--white-color);
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+ul {
+  list-style: none;
+}
+
+.custom-input-container {
+  background-color: #f4f4f4;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  height: 56px;
+}
+
+.custom-input-container .StripeElement {
+  padding-inline: 20px !important;
+  border-radius: 12px !important;
+}
+
+.custom-input-container .StripeElement--invalid,
+.custom-input-container .StripeElement--empty {
+  background-color: #f4f4f4 !important;
+  border-radius: 10px !important;
+
+}
+/* Start form design  */
+
+.form-group {
+  margin-bottom: 18px;
+}
+.form-group.last {
+  margin-bottom: 0;
+}
+.form-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--main-color-text);
+  font-family: "Manrope";
+}
+.form-control {
+  min-height: 54px;
+  background: #fff;
+  border: 1px solid #e9eaec;
+  border-radius: 10px;
+  padding: 16px 20px;
+  color: var(--main-color-text);
+  font-family: "Manrope";
+  font-weight: 500;
+  font-size: 14px;
+}
+.form-control::placeholder {
+  color: #a0aec0;
+  font-family: "Manrope";
+  font-weight: 400;
+  font-size: 14px;
+}
+.form-control:focus {
+  box-shadow: none;
+  border-color: var(--main-color);
+  background: #fff;
+}
+.submit-field {
+  background: var(--main-color);
+  border: none;
+  color: #fff;
+  width: 100%;
+  max-width: 480px;
+  min-height: 56px;
+  border-radius: 10px;
+  margin-top: 30px;
+  font-family: "Manrope";
+  font-weight: 700;
+  font-size: 16px;
+}
+.submit-field.disable {
+  background: #f1f2f4;
+  color: #a0aec0;
+}
+.form-select {
+  outline: 0px !important;
+  box-shadow: none !important;
+  border: none;
+}
+.form-check-input {
+  outline: 0px !important;
+  box-shadow: none !important;
+  padding: 10px;
+}
+/* .p-dropdown {
+  border: none !important;
+  outline: 0px !important;
+  box-shadow: none !important;
+  background: #fafbfc;
+} */
+.pointer{
+  cursor: pointer;
+}
+.form-check-input:checked[type="checkbox"] {
+  background-color: #226f54;
+  font-weight: lighter;
+  border: 1px solid #226f54;
+}
+.btn-main-color {
+  background-color: var(--main-color);
+  color: var(--white-color);
+  border: none;
+}
+.btn-outline {
+  background-color: var(--white-color);
+  color: var(--main-color-text);
+  border: 1px solid var(--main-color-text);
+}
+
+.simple-notification-wrapper{
+  z-index: 9999999999 !important;
+}
+.simple-notification .sn-content{
+  overflow-wrap: anywhere;
+}
+
+.custome-btn {
+  font-family: "Manrope";
+  font-size: 16px;
+  font-weight: 700;
+  border-radius: 10px;
+  height: 56px;
+}
+
+::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+  background: lightgray;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--main-color);
+  border-radius: 10px;
+}
+
+/* internal server error */
+.internal-server-error {
+  height: 160px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 24px;
+  color: #d33734;
+}
+.no-data{
+  text-align: center !important;
+  padding: 50px 0 !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  font-family: 'Poppins', sans-serif;
+  color: #797979 !important;
+}
+
+/* End form design  */
+
+/* Responsive Design */
+@media screen and (min-width: 0px) {
+  :root {
+    --header-main-size: 22px;
+    --header-lg-size: 32px;
+    --paragraph-main-size: 14px;
+    --lg-size-text: 18px;
+    --md-size-text: 16px;
+    --sm-size-text: 14px;
+    --xs-size-text: 12px;
+  }
+}
+
+@media screen and (min-width: 500px) {
+  :root {
+    --header-main-size: 38px;
+    --header-lg-size: 34px;
+    --main-size-text: 16px;
+    --lg-size-text: 21px;
+  }
+}
+
+@media screen and (min-width: 900px) {
+  :root {
+    --header-main-size: 40px;
+    --header-lg-size: 36px;
+    --main-size-text: 16px;
+    --lg-size-text: 24px;
+    --md-size-text: 18px;
+    --sm-size-text: 16px;
+    --xs-size-text: 14px;
+  }
+}

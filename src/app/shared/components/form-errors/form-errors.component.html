@@ -1,0 +1,184 @@
+<div class="err" *ngIf=" control && control.touched && control.errors">
+    <!-- <div *ngIf="control.hasError('notMatch')">Password and Confirm Password must be match</div> -->
+    <div *ngIf="control.errors.required" class="text-start">*Required</div>
+    <div *ngIf="!(getControlName(control) == 'password' ||
+    getControlName(control) =='password_confirmation')&&control.errors.minlength">*Minimum length {{control.errors.minlength.requiredLength}} characters
+    </div>
+    <div *ngIf="control.errors.maxlength">*Maximum length {{control.errors.maxlength.requiredLength}} characters
+    </div>
+    <div *ngIf="control.errors.min">*Min {{control.errors.min.min}}
+    </div>
+    <div *ngIf="control.errors.max">*Max {{control.errors.max.max}}
+    </div>
+    <div *ngIf="control.errors.email || control.errors.pattern?.requiredPattern == emailRegex">
+        *Invalid email format
+    </div>
+    <div *ngIf="control.errors.pattern?.requiredPattern == phoneRegex2">
+      *Invalid Format (000) 000-0000
+    </div>
+    <div *ngIf="control.errors?.fileSize?.valid">
+        * Max file size is {{control.errors?.fileSize?.maxSize}}
+    </div>
+    <!-- <div *ngIf="control.errors.fileExt">
+        *File Only (JPG , PNG)
+    </div> -->
+    <!-- ***** end image validation -->
+    <div *ngIf=" control.errors.pattern?.requiredPattern == webSiteRegex">
+        *Invalid website url
+    </div>
+
+    <div *ngIf=" control.errors.pattern?.requiredPattern == hexColor">
+        *Invalid hexadecimal color (#xxxxxx)
+    </div>
+
+    <div *ngIf=" control.errors.pattern?.requiredPattern == URlRegex">
+        *Invalid  url
+    </div>
+
+    <div *ngIf=" control.errors.pattern?.requiredPattern == subdomainPattern">
+        *Invalid  subdomain
+    </div>
+  <!-- passowrd confirmation message -->
+  <div *ngIf="control.errors.unmatchedPasswords && control?.value['password_confirmation'] ">
+    *Passwords do not match
+</div>
+
+
+    <!-- ************** start valid positive integer   -->
+    <div
+    *ngIf="getControlName(control) == 'deliveriesPerMonth'&& control.hasError('invalidNumber')">
+    *Invalid integer
+    </div>
+    <!-- ************** end valid positive integer  -->
+
+     <!-- ************** start hex color patterns  -->
+    <div
+    *ngIf="(getControlName(control) == 'legend' )  && control.hasError('invalidHexColor')">
+    *Invalid hex color
+    </div>
+ <!-- ************** end hex color patterns  -->
+    <div *ngIf="control.errors.pattern?.requiredPattern == numericalRegex">
+        *Digits Only
+    </div>
+    <div *ngIf="control.errors.pattern?.requiredPattern == floatRegex">
+        *floats Only
+    </div>
+
+    <div *ngIf="control.errors.pattern?.requiredPattern == alphaRegex">
+        *Letters only
+    </div>
+
+    <div *ngIf="control.errors.pattern?.requiredPattern == phoneRegex">
+        *Invalid phone ex:(111) 111-1111
+    </div>
+
+    <div *ngIf="control?.errors?.ccNumber==true">
+        *Invalid card number
+    </div>
+    <div *ngIf="control.errors.expDate">
+        *Invalid expiration date
+    </div>
+    <!-- ****** start file validation -->
+    <div *ngIf="getControlName(control) == 'file' && control.errors.fileExt">
+        *File Only (PDF , DOC , DOCX)
+    </div>
+
+    <div *ngIf="getControlName(control) == 'file' && control.errors.fileSize">
+        * Max file size is 5 MB
+    </div>
+    <!-- ****** end file validation -->
+
+    <!-- ***** start image (branding page) validation -->
+    <div *ngIf="(getControlName(control) == 'profileImage') && control.errors.fileExt">
+      *File Only (JPG , PNG , JPEG)
+    </div>
+    <div *ngIf="(getControlName(control) == 'profileImage') && control.errors.fileSize">
+        *Max file size is 2 MB
+    </div>
+
+</div>
+
+    <!-- ************** start password patterns  -->
+    <div class="err" *ngIf=" control && control.touched && getControlName(control) == 'password'">
+      <div class="validation-container">
+        <div class="d-flex justify-content-between flex-wrap mb-1">
+         <div class="characters-validation">
+          <div *ngIf="getControlName(control) == 'password'&& control?.value && control?.value?.length < 8">
+            <i class="fa fa-times-circle"></i>
+              8 characters
+          </div>
+          <div class="success" *ngIf="getControlName(control) == 'password' && control?.value?.length >= 8">
+            <i class="fa-solid fa-circle-check"></i>
+              8 characters
+          </div>
+         </div>
+          <div class="number-validation me-5 pe-2">
+          <div
+              *ngIf="
+                getControlName(control) == 'password' &&
+                control.hasError('notHasNumber')&&control?.value
+              "
+            >
+              <i class="fa fa-times-circle"></i>
+                Number (0-9)
+            </div>
+            <div
+            class="success"
+              *ngIf="
+                getControlName(control) == 'password' &&
+                !control.hasError('notHasNumber')&&control?.value
+              "
+            >
+              <i class="fa-solid fa-circle-check"></i>
+                Number (0-9)
+            </div>
+          </div>
+        </div>
+        <div class="d-flex justify-content-between flex-wrap">
+            <div class="uppercase-validation">
+            <div
+              *ngIf="
+                getControlName(control) == 'password' &&
+                control.hasError('notHasCapitalCase')&&control?.value
+              "
+            >
+             <i class="fa fa-times-circle"></i>
+                Uppercase letter (A-Z)
+              </div>
+            <div
+            class="success"
+              *ngIf="
+                getControlName(control) == 'password' &&
+                !control.hasError('notHasCapitalCase')&&control?.value
+              "
+            >
+              <i class="fa-solid fa-circle-check"></i>
+                 Uppercase letter (A-Z)
+            </div>
+            </div>
+          <div class="lowercase-validation">
+           <div
+             *ngIf="
+               getControlName(control) == 'password'&&
+               control.hasError('notHasSmallCase')&&control?.value
+             "
+           >
+           <i class="fa fa-times-circle"></i>
+             Lowercase letter (a-z)
+           </div>
+           <div
+           class="success"
+           *ngIf="
+             getControlName(control) == 'password'&&
+             !control.hasError('notHasSmallCase')&&control?.value
+           "
+         >
+         <i class="fa-solid fa-circle-check"></i>
+             Lowercase letter (a-z)
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <!-- ************** end password patterns  -->

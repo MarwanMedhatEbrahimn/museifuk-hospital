@@ -1,0 +1,16 @@
+.err{
+    margin-top: 7px;
+}
+.err>div:not(.password-validations){
+    color: #f14e4e;
+    font-size: 14px;
+}
+
+.validation-container .success
+{
+  color: #27A376;
+}
+.validation-container i
+{
+  margin-right: 5px;
+}

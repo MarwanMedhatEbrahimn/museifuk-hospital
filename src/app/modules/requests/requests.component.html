@@ -1,0 +1,36 @@
+<div class="m-3 mb-0 dashboard-body">
+    <!-- header -->
+    <div class="d-flex justify-content-between align-items-center flex-wrap" style="margin-bottom: 10px;">
+      <h4 class="fw-bolder head-page">Requests</h4>
+      <div class="d-flex flex-wrap justify-content-center">
+          <div class="search-container me-md-4">
+              <img src="../../../assets/images/search.svg" class="search-icon" alt="">                  
+              <input (input)="search()" [(ngModel)]="searchKeyword" type="text" placeholder="Search All Plasma" class="search-input">
+          </div>
+      </div>
+  </div>
+
+  <!-- links -->
+  <div class="d-flex mt-2 mb-4">
+    <a class="Options_link" [class.active]="current_Router == '1'" (click)="changeRouter('1')">New Requests</a>
+    <a class="Options_link" [class.active]="current_Router == '2'" (click)="changeRouter('2')">In Progress Requests</a> 
+    <a class="Options_link" [class.active]="current_Router == '3'" (click)="changeRouter('3')">Completed Requests</a> 
+    <a class="Options_link" [class.active]="current_Router == '4'" (click)="changeRouter('4')">Cancelled Requests</a> 
+  </div>
+  <ng-container *ngIf="current_Router==1 && !isEdit">
+    <app-new-requests (openDetails)="onOpenDetails($event)" [dataTable]="dataTable" [serverErrorFetch]="serverErrorFetch" [isLoading]="isLoading"></app-new-requests>
+  </ng-container>
+  <ng-container *ngIf="current_Router==2 && !isEdit">
+    <app-in-progress-requests (openDetails)="onOpenDetails($event)" [dataTable]="dataTable2" [serverErrorFetch]="serverErrorFetch" [isLoading]="isLoading"></app-in-progress-requests>
+  </ng-container>
+  <ng-container *ngIf="current_Router==3 && !isEdit">
+    <app-finished-requests (openDetails)="onOpenDetails($event)" [dataTable]="dataTable3" [serverErrorFetch]="serverErrorFetch" [isLoading]="isLoading"></app-finished-requests>
+  </ng-container>
+  <ng-container *ngIf="current_Router==4 && !isEdit">
+    <app-cancel-requests (openDetails)="onOpenDetails($event)" [dataTable]="dataTable4" [serverErrorFetch]="serverErrorFetch" [isLoading]="isLoading"></app-cancel-requests>
+  </ng-container>
+  <ng-container *ngIf="isEdit">
+    <app-requests-details (accept)="changeRouterWith($event)" [details]='row'></app-requests-details>
+  </ng-container>
+</div>
+  

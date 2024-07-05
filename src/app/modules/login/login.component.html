@@ -1,0 +1,60 @@
+<div class="login-body row">
+    <div class="col-md-6 col-0 left-section">
+        <h1>Museifuk</h1>
+        <img src="../../../assets/images/doctors.svg" alt="doctors">
+    </div>
+    <div class="col-md-6 col-12 right-section">
+        <div class="login-form">
+            <img src="../../../assets/images/logo.png" class="Logo" alt="">
+            <div class="Logo mb-5"></div>
+            <form [formGroup]="loginForm" #form="ngForm" (ngSubmit)="login()">
+                <div class="row mb-3">
+                    <div class="col-12">
+                        <label for="" class="form-label">Email:</label>
+                        <input formControlName="email" type="text" class="form-control">
+                        <app-form-errors
+                            [color]="'danger'"
+                            [form]="form"
+                            [control]="loginForm.controls['email']"
+                        >
+                        </app-form-errors>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-12">
+                        <label for="" class="form-label">Password:</label>
+                        <input formControlName="password" type="text" class="form-control">
+                        <app-form-errors
+                            [color]="'danger'"
+                            [form]="form"
+                            [control]="loginForm.controls['password']"
+                        >
+                        </app-form-errors>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-12">
+                        <input formControlName="role" type="radio" formControlName="role" name="role" value="Owner" class="form-check-input">
+                        <label for="" class="form-check-label me-3">Hospital Stuff</label>
+                        <input formControlName="role" type="radio" formControlName="role" name="role" value="Admin" class="form-check-input">
+                        <label for="" class="form-check-label">Emergency Stuff</label>
+                        <app-form-errors
+                            [color]="'danger'"
+                            [form]="form"
+                            [control]="loginForm.controls['role']"
+                        >
+                        </app-form-errors>
+                    </div>
+                </div>
+                <div class="row w-100 d-flex justify-content-center">
+                    <div class="col-4">
+                        <button class="btn-submit" [disabled]="isLoadingSubmit?'disable':''" type="submit">
+                            Login
+                            <i *ngIf="isLoadingSubmit" class="fa-spin fas fa-spinner"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

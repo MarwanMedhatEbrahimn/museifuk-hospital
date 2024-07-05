@@ -1,0 +1,67 @@
+<div class="m-3 profile-body">
+    <div class="dashboard-body">
+        <div class="header">
+            <h1>Welcome, <span>{{hospitalData.name}}</span></h1>
+        </div>
+        <div class="main-info">
+            <div class="me-4">
+                <img [src]="hospitalData.imageUrl" class="img" alt="hospitalImage">
+            </div>
+            <div>
+                <div class="value name">{{hospitalData.name}}</div>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td class="pe-2">ID:</td>
+                            <td class="value">{{hospitalData._id}}</td>
+                        </tr>
+                        <tr>
+                            <td class="pe-2">Phone:</td>
+                            <td class="value">{{hospitalData.phone}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="wow-info">
+        <div>
+            <p class="text">+{{hospitalData.beds}}</p>
+            <p class="text">Beds</p>
+        </div>
+        <div>
+            <p class="text">{{hospitalData.departments.length}}</p>
+            <p class="text">Medical Specialties & Subspecialties</p>
+        </div>
+        <div>
+            <p class="text">2.5M+</p>
+            <p class="text">Patients A Year</p>
+        </div>
+    </div>
+    <div class="dashboard-body">
+        <div class="about-info">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class="me-4 key">About:</td>
+                        <td class="value">audi German Health is a prominent healthcare organization
+                            dedicated to providing high-quality medical services in the Kingdom 
+                            of Saudi Arabia and beyond</td>
+                    </tr>
+                    <tr>
+                        <td class="me-4 key">Location:</td>
+                        <td class="value">{{hospitalData.address}}</td>
+                    </tr>
+                    <tr>
+                        <td class="me-4 key">Specialties:</td>
+                        <td class="value">
+                            <ul class="px-3">
+                                <li *ngFor="let item of hospitalData.departments">{{item.name}}</li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

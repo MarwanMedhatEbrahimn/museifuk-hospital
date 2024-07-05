@@ -1,0 +1,84 @@
+<div class="body">
+    <table class="main-table">
+        <tbody>
+            <tr>
+                <td colspan="2">
+                    <span class="key me-3">Patient Name:</span>
+                    <span class="value">{{details.patientName}}</span>
+                </td>
+                <td>
+                    <span class="key me-3">Age:</span>
+                    <span class="value">{{details.patientAge}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td class="text-center">
+                    <p class="key">Phone Num:</p>
+                    <p class="value">{{details.nationalid}}</p>
+                </td>
+                <td class="text-center">
+                    <p class="key">National Id:</p>
+                    <p class="value">{{details.contactNumber}}</p>
+                </td>
+                <td class="text-center">
+                    <p class="key">Email:</p>
+                    <p class="value">{{details.email}}</p>
+                </td>
+            </tr>
+            <tr>
+                <td class="text-center">
+                    <p class="key">Address</p>
+                    <p class="value">{{details?.pickupLocation?.address}}</p>
+                </td>
+                <td class="text-center">
+                    <p class="key">Urgency Level</p>
+                    <p class="value">{{details?.urgencyLevel}}</p>
+                </td>
+                <td class="text-center">
+                    <p class="key">State</p>
+                    <p class="value">{{details?.state}}</p>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="mt-4">
+        <tbody>
+            <tr style="width: fit-content;">
+                <td class="key status">Description:</td>
+                <td class="value w-100">
+                    {{details.description}}
+                </td>
+            </tr>
+            <tr style="width: fit-content;">
+                <td class="key status">Number of Patients:</td>
+                <td class="value w-100">
+                    {{details.Numberofpatients}}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="row mb-3">
+        <div class="col-6">
+            <p-multiSelect [options]="drivers" optionLabel='carNumber' [(ngModel)]="drivers" [disabled]='true'></p-multiSelect>
+        </div>
+        <div class="col-6 d-flex align-items-center" *ngIf="details.state=='label created'">
+            <button (click)="getDrivers()" class="btn auto-select">
+                Auto Select Cars
+                <i *ngIf="isLoadingDrivers" class="fa-spin fas fa-spinner"></i>
+            </button>
+        </div>
+        <div class='err' *ngIf="err">
+            Must select at least one car
+        </div>
+    </div>
+    <div class="button-container">
+        <button class="btn me-4 update" [disabled]="isLoadingRemove || isLoadingConfirm" (click)="confirmRequest()" *ngIf="details.state=='label created'">
+            Confirm
+            <i *ngIf="isLoadingConfirm" class="fa-spin fas fa-spinner"></i>
+        </button>
+        <button class="btn"[disabled]="isLoadingRemove || isLoadingConfirm" (click)="removeRequest()" *ngIf="details.state=='label created' || details.state=='cancelled'">
+            Cancel Request
+            <i *ngIf="isLoadingRemove" class="fa-spin fas fa-spinner"></i>
+        </button>
+    </div>
+</div>

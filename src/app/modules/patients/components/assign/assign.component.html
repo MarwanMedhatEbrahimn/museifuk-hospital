@@ -1,0 +1,104 @@
+<form [formGroup]="addEditDepartment" #form="ngForm" (ngSubmit)="onSubmit()" class="pop-up">
+
+    <div class="row mb-5 pop-up-head">
+        <div class="col-md-12"> 
+          <h3>Assign</h3>
+        </div>
+    </div>
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <label for="team" class="form-label">Name</label>
+            <input type="text" formControlName="name" class="form-control" id="name">
+            <app-form-errors
+                [color]="'danger'"
+                [form]="form"
+                [control]="addEditDepartment.controls['name']"
+            >
+            </app-form-errors>
+        </div>
+        <div class="col-md-6">
+          <label for="title" class="form-label">Age</label>
+          <input type="number" formControlName="age" class="form-control" id="age">
+          <app-form-errors
+                [color]="'danger'"
+                [form]="form"
+                [control]="addEditDepartment.controls['age']"
+           >
+           </app-form-errors>
+        </div>
+    </div>
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <label for="team" class="form-label">Gender</label>
+            <p-dropdown [options]="genderOptions" formControlName="gender"></p-dropdown>
+            <app-form-errors
+                [color]="'danger'"
+                [form]="form"
+                [control]="addEditDepartment.controls['gender']"
+            >
+            </app-form-errors>
+        </div>
+        <div class="col-md-6">
+            <label for="title" class="form-label">
+                Department
+                <i *ngIf="isLoading" class="fa-spin fas fa-spinner"></i>
+            </label>
+          <p-dropdown [options]="department" optionLabel="name"  formControlName="department" [disabled]="errorInLoading||isLoading"></p-dropdown>
+          <app-form-errors
+                [color]="'danger'"
+                [form]="form"
+                [control]="addEditDepartment.controls['department']"
+           >
+           </app-form-errors>
+        </div>
+    </div>
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <label for="Equipment" class="form-label">
+                Equipment
+                <i *ngIf="isLoading" class="fa-spin fas fa-spinner"></i>
+            </label>
+            <p-multiSelect id="Equipment" [options]="equipment" formControlName="equipmentNeeded" optionLabel="name" [disabled]="errorInLoading||isLoading"></p-multiSelect>
+            <app-form-errors
+                [color]="'danger'"
+                [form]="form"
+                [control]="addEditDepartment.controls['equipmentNeeded']"
+            >
+            </app-form-errors>
+        </div>
+        <div class="col-md-6">
+            <label for="Serum" class="form-label">
+                Serum
+                <i *ngIf="isLoading" class="fa-spin fas fa-spinner"></i>
+            </label>
+            <p-multiSelect id="serum" [options]="serum" formControlName="serumsNeeded" optionLabel="name" [disabled]="errorInLoading||isLoading"></p-multiSelect>
+            <app-form-errors
+                    [color]="'danger'"
+                    [form]="form"
+                    [control]="addEditDepartment.controls['serumsNeeded']"
+                >
+            </app-form-errors>
+        </div>
+    </div>
+    <div class="row mb-5 g-2">
+        <div class="col-md-12">
+          <label for="condition" class="form-label">Condition</label>
+          <textarea name="" id="" rows="7" class="form-control" formControlName="condition" id="condition"></textarea>
+          <app-form-errors
+            [color]="'danger'"
+            [form]="form"
+            [control]="addEditDepartment.controls['condition']"
+          >
+          </app-form-errors>
+        </div>
+    </div>
+    <!-- Message Text -->
+    <div class="row mb-3 g-2 d-flex justify-content-center position-relative">
+        <div class="col-md-6"> 
+            <button class="btn-submit" [disabled]="isLoadingSubmit?'disable':''" type="submit">
+                Submit
+                <i *ngIf="isLoadingSubmit" class="fa-spin fas fa-spinner"></i>
+            </button>
+        </div>
+    </div>
+</form>

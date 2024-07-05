@@ -1,0 +1,144 @@
+<div class="m-3 dashboard-body">
+    <!-- header -->
+    <div class="d-flex justify-content-between align-items-center flex-wrap" style="margin-bottom: 30px;">
+        <h4 class="fw-bolder head-page">Driver</h4>
+        <div class="d-flex flex-wrap justify-content-center">
+            <div class="search-container me-md-4">
+                <img src="../../../assets/images/search.svg" class="search-icon" alt="">                  
+                <input (input)="search()" [(ngModel)]="searchKeyword" type="text" placeholder="Search All Driver" class="search-input">
+            </div>     
+            <button class="btn btn-AddNew" (click)="openAddEditDriverPage(true,{})"><i class="fa fa-plus"></i> Add New</button>
+        </div>
+    </div>
+
+    <div class="table_container">
+        <table class="w-100">
+            <thead class="table-header">
+                <tr class="table-row-header">
+                    <th style="padding-left: 16px;">Driver Name                            
+                    </th>
+                    <th>License Number                           
+                    </th>
+                    <th>Contact Number                    
+                    </th>
+                    <th>Email                    
+                    </th>
+                    <th class="w-1">
+                    </th>
+                </tr>
+            </thead>
+            <tbody *ngIf='!isLoading && dataTable.length > 0 && !serverErrorFetch'>
+                <tr *ngFor="let row of dataTable" class="table-row-body">
+                    <td>{{row?.name}}</td>
+                    <td>{{row?.licenseNumber}}</td>
+                    <td>{{row?.contactNumber}}</td>
+                    <td>{{row?.email}}</td>
+                    <td><img (click)="openAddEditDriverPage(false, row)" style="cursor: pointer;" src="./../../../assets/images/edit.svg" alt="edit icon"></td>
+                </tr>
+            </tbody>
+            <tbody *ngIf='isLoading'>
+                <tr *ngFor="let row of loadingSchema" class="table-row-body">
+                    <td><ngx-skeleton-loader appearance="line"></ngx-skeleton-loader></td>
+                    <td><ngx-skeleton-loader appearance="line"></ngx-skeleton-loader></td>
+                    <td><ngx-skeleton-loader appearance="line"></ngx-skeleton-loader></td>
+                    <td><ngx-skeleton-loader appearance="line"></ngx-skeleton-loader></td>
+                    <td><ngx-skeleton-loader appearance="line"></ngx-skeleton-loader></td>
+                </tr>
+            </tbody>
+            <tbody *ngIf='!isLoading && dataTable.length == 0 && !serverErrorFetch'>
+                <tr>
+                    <td colspan="12"  class="no-data">
+                        There is no Driver at the moment
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div *ngIf="serverErrorFetch" class="internal-server-error">
+            {{serverErrorFetch}}
+        </div>
+    </div>
+
+    <p-dialog [(visible)]="addDriver" [modal]="true" [dismissableMask]="!isLoadingSubmit">
+        <form [formGroup]="addEditDriver" #form="ngForm" (ngSubmit)="onSubmit()" class="pop-up">
+
+            <div class="row mb-5 pop-up-head">
+                <div class="col-md-12"> 
+                  <h3>{{isAdd?"Add":"Edit"}} Driver</h3>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-12">
+                    <label for="team" class="form-label">Driver name</label>
+                    <input type="text" formControlName="name" class="form-control" id="name">
+                    <app-form-errors
+                        [color]="'danger'"
+                        [form]="form"
+                        [control]="addEditDriver.controls['name']"
+                    >
+                    </app-form-errors>
+                </div>
+            </div>
+            <div class="row mb-3 g-2">
+                <div class="col-md-12">
+                  <label for="licenseNumber" class="form-label">License Number</label>
+                  <input type="text" formControlName="licenseNumber" class="form-control" id="licenseNumber">
+                  <app-form-errors
+                        [color]="'danger'"
+                        [form]="form"
+                        [control]="addEditDriver.controls['licenseNumber']"
+                   >
+                   </app-form-errors>
+                </div>
+            </div>
+            <div class="row mb-3 g-2">
+                <div class="col-md-12">
+                  <label for="contactNumber" class="form-label">contact Number</label>
+                  <input type="text" formControlName="contactNumber" class="form-control" id="contactNumber">
+                  <app-form-errors
+                    [color]="'danger'"
+                    [form]="form"
+                    [control]="addEditDriver.controls['contactNumber']"
+                  >
+                  </app-form-errors>
+                </div>
+            </div>
+            <div class="row mb-3 g-2">
+                <div class="col-md-12">
+                  <label for="email" class="form-label">Email</label>
+                  <input type="text" formControlName="email" class="form-control" id="email">
+                  <app-form-errors
+                    [color]="'danger'"
+                    [form]="form"
+                    [control]="addEditDriver.controls['email']"
+                  >
+                  </app-form-errors>
+                </div>
+            </div>
+            <div class="row mb-5 g-2">
+                <div class="col-md-12">
+                  <label for="password" class="form-label">password</label>
+                  <input type="password" formControlName="password" class="form-control" id="password">
+                  <app-form-errors
+                    [color]="'danger'"
+                    [form]="form"
+                    [control]="addEditDriver.controls['password']"
+                  >
+                  </app-form-errors>
+                </div>
+            </div>
+            <!-- Message Text -->
+            <div class="row mb-3 g-2 d-flex flex-row-reverse position-relative">
+                <div class="col-md-6"> 
+                    <button class="btn-submit" [disabled]="isLoadingSubmit?'disable':''" type="submit">
+                        {{isAdd? "Submit" : "Save Changes"}}
+                        <i *ngIf="isLoadingSubmit" class="fa-spin fas fa-spinner"></i>
+                    </button>
+                </div>
+                <div class="col-md-6">
+                  <button class="btn-Cancle" [disabled]="isLoadingSubmit?'disable':''" type="button" (click)="closeAddEditDriverPage()">Cancel</button>
+                </div>
+            </div>
+        </form>
+    </p-dialog>
+
+</div>

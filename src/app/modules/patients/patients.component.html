@@ -1,0 +1,28 @@
+<div class="m-3 mb-0 dashboard-body">
+    <!-- header -->
+    <div class="d-flex justify-content-between align-items-center flex-wrap" style="margin-bottom: 10px;">
+      <h4 class="fw-bolder head-page">Patients</h4>
+      <div class="d-flex flex-wrap justify-content-center">
+          <div class="search-container me-md-4">
+              <img src="../../../assets/images/search.svg" class="search-icon" alt="">                  
+              <input (input)="search()" [(ngModel)]="searchKeyword" type="text" placeholder="Search All Plasma" class="search-input">
+          </div>
+      </div>
+  </div>
+
+  <!-- links -->
+  <div class="d-flex mt-2 mb-4">
+    <a class="Options_link" [class.active]="current_Router == '1'" (click)="changeRouter('1')">Patients List</a>
+    <a class="Options_link" [class.active]="current_Router == '2'" (click)="changeRouter('2')">Assign</a> 
+  </div>
+  <ng-container *ngIf="current_Router==1 && !isDetails">
+    <app-list [dataTable]="dataTable" (openDetails)="onOpenDetails($event)" [isLoading]="isLoading" [serverErrorFetch]="serverErrorFetch"></app-list>
+  </ng-container>
+  <ng-container *ngIf="current_Router==2">
+    <app-assign [department]="department" [equipment]="equipment" [serum]="serum" (submitSuccess)="onSubmitSuccess($event)" [isLoading]="isLoadingDropDown" [errorInLoading]="errorDropDown"></app-assign>
+  </ng-container>
+  <ng-container *ngIf="current_Router==1 && isDetails">
+    <app-patient-details [details]="row" (Remove)="onSubmitSuccess($event)"></app-patient-details>
+  </ng-container>
+</div>
+  

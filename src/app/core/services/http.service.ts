@@ -1,0 +1,53 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Location } from '@angular/common';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class HttpService {
+
+  baseURL = "https://musifuk-be.vercel.app";
+  // baseURLDomain :any=environment.baseurlDomain
+  // domain:any=environment.domain
+  // subDomainName:any = ''
+  constructor(private http: HttpClient
+              ) { 
+                // if(window.location.origin.includes(`.${this.domain}`)){
+                //  this.subDomainName= window.location.origin.split('://')[1].split('.')[0]
+                //   // this.baseURL=`https://${subDomainName}${this.baseURLDomain}`
+
+                // }
+              }
+
+      
+
+  getReq(path: string, options?: Object): Observable<any> {
+    return this.http.get(`${this.baseURL}${path}`, options);
+  }
+ 
+  postReq(path: string, data?: any, options?: Object): Observable<any> {
+    return this.http.post(`${this.baseURL}${path}`, data, options);
+  }
+
+  putReq(path: string, data?: any, options?: Object): Observable<any> {
+    return this.http.put(`${this.baseURL}${path}`, data, options);
+  }
+  patchReq(path: string, data?: any, options?: Object): Observable<any> {
+    return this.http.patch(`${this.baseURL}${path}`, data, options);
+  }
+
+  deleteReq(path: string, options?: Object): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      }),
+      body: options // The data you want to send in the body
+    };
+    return this.http.delete(`${this.baseURL}${path}`, httpOptions);
+  }
+
+
+
+}

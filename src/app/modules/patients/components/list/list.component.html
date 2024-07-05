@@ -1,0 +1,52 @@
+<div class="table_container">
+    <table class="w-100">
+        <thead class="table-header">
+            <tr class="table-row-header">
+                <th style="padding-left: 16px;">
+                    Name                            
+                </th>
+                <th class="w-1">
+                    Age                           
+                </th>
+                <th>
+                    Gender                   
+                </th>
+                <th>
+                    Department                   
+                </th>
+                <th>
+                    Assigned At                   
+                </th>
+                <th class="w-1">
+                </th>
+            </tr>
+        </thead>
+        <tbody *ngIf='!isLoading && dataTable.length > 0 && !serverErrorFetch'>
+            <tr *ngFor="let row of dataTable" (click)="openDetailsClick(row)" class="table-row-body">
+                <td>{{row?.name}}</td>
+                <td>{{row?.age}}</td>
+                <td>{{row?.gender}}</td>
+                <td>{{row?.department}}</td>
+                <td>{{row?.assignedAt | dateFormat}}</td>
+            </tr>
+        </tbody>
+        <tbody *ngIf='isLoading'>
+            <tr *ngFor="let row of loadingSchema" class="table-row-body">
+                <td><ngx-skeleton-loader appearance="line"></ngx-skeleton-loader></td>
+                <td><ngx-skeleton-loader appearance="line"></ngx-skeleton-loader></td>
+                <td><ngx-skeleton-loader appearance="line"></ngx-skeleton-loader></td>
+                <td><ngx-skeleton-loader appearance="line"></ngx-skeleton-loader></td>
+            </tr>
+        </tbody>
+        <tbody *ngIf='!isLoading && dataTable.length == 0 && !serverErrorFetch'>
+            <tr>
+                <td colspan="12"  class="no-data">
+                    There is no plasma at the moment
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div *ngIf="serverErrorFetch" class="internal-server-error">
+        {{serverErrorFetch}}
+    </div>
+</div>

@@ -1,0 +1,31 @@
+<div class="container-navbar">
+    <div class="navbar">
+      <div class="navbar-info">
+        <div class="account-info circle" *ngIf="isCircle">
+          <div class="icon" [routerLink]="['/dashboard/profile']">
+            <img
+              src="./assets/images/icons-navbar/ic-profile.svg"
+              class="profile-icon"
+              alt="ic-profile"
+            />
+          </div>
+          <img
+            src="./assets/images/icons-navbar/ic-chevron.svg"
+            class="down-arrow"
+            alt="ic-chevron"
+            (click)="showProfileMenu()"
+          />
+          <div class="account-info-tab">
+            <ul>
+              <!-- <li *ngIf="!isMainDomain" class="nav-item"><a class="nav-link" (click)="goToMyAccount()">My Account</a></li> -->
+              <!-- <li class="nav-item"><a class="nav-link" (click)="showConfirmMessage = true">Logout</a></li> -->
+              <li class="nav-item">
+                <a class="nav-link" (click)="logout()">Logout</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="overlay-navbar" (click)="closeProfileMenu()"></div>

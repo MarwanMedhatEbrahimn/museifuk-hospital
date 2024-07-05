@@ -1,0 +1,119 @@
+.container-sidebar{
+    height: 100vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    padding: 0 15px;
+}
+.container-sidebar::-webkit-scrollbar{
+    width: 0px;
+}
+.container-sidebar:hover::-webkit-scrollbar{
+    width: 4px;
+}
+.container-sidebar:hover::-webkit-scrollbar-track{
+    background: #fff;
+    border: 1px solid rgb(255, 255, 255,0.7);
+}
+.container-sidebar:hover::-webkit-scrollbar-thumb{
+    background-color: transparent;
+    border-top: 40px solid #E9E9E9;
+    border-radius: 5px;
+}
+.container-sidebar .sidebar{
+    height: 100%;
+}
+.container-sidebar .sidebar .top-section{
+    min-height: 100px;
+    display: flex;
+    align-items: center;
+    padding:0 0 40px 40px;
+    position: relative;
+}
+.container-sidebar .sidebar .top-section::after{
+    content: "";
+    position: absolute;
+    width: 120%;
+    height: 2px;
+    background-color: #E0E0E0;
+    left: -15px;
+    bottom: 40px;
+}
+.container-sidebar .sidebar .top-section img{
+    width: 141px;
+}
+.sidebar .main-sidebar ul{
+    padding: 0;
+    margin: 0;
+}
+.sidebar .main-sidebar>ul:not(.sub-ul){
+    padding-bottom: 20px;
+}
+.sidebar .main-sidebar ul.sub-ul{
+    max-width: 290px;
+    width: 100%;
+    margin-left: auto;
+    border-left: 2px solid #F1F5F9;
+}
+.sidebar .main-sidebar ul.sub-ul li{
+    margin-bottom: 8px;
+}
+.sidebar .main-sidebar ul.sub-ul li:last-child{
+    margin-bottom: 0;
+}
+.sidebar .main-sidebar ul li a{
+    display: flex;
+    align-items: center;
+    min-height: 60px;
+    padding-left: 15px;
+    font-size: 14px;
+    color: #000;
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 700;
+}
+.sidebar .main-sidebar ul.sub-ul li a{
+    min-height: 24px;
+    color: #000;
+    font-weight: 400;
+    font-size: 14px;
+    /* padding-left: 40px; */
+}
+.sidebar .main-sidebar ul.sub-ul li a span{
+    margin: 0;
+}
+/* .sidebar .main-sidebar ul.sub-ul li a.active{
+    color: var(--main-color);
+    font-weight: 600;
+    border-left: 2px solid #3855B3;
+} */
+.sidebar .main-sidebar ul:not(.sub-ul)>li>a.active{
+    background:  var(--main-color);
+    color: var(--white-color);
+    border-radius: 12px;
+    /* margin: 0 10px; */
+}
+.sidebar .main-sidebar ul li a span{
+    margin-left: 21px;
+}
+
+.close-sidebar{
+    width: 28px !important;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    display: none;
+}
+.icon-nav-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    }
+
+@media screen and (max-width:987px) {
+    .close-sidebar{
+        display: block;
+    }
+}

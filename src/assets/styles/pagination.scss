@@ -1,0 +1,79 @@
+ngb-pagination{
+    background-color: inherit;
+}
+ngb-pagination ::ng-deep .pagination .page-item .page-link{
+    background-color: white;
+    color: black;
+    border-radius: 10px;
+    padding: 6px 14px;
+    margin: 0px 3px;
+    border: none;
+    font-weight: 600;
+}
+ngb-pagination ::ng-deep .pagination .page-item .page-link:focus{
+    box-shadow: none;
+}
+ngb-pagination ::ng-deep .pagination .page-item.disabled.ng-star-inserted .page-link.ng-star-inserted{
+    color: black !important;
+}
+ngb-pagination ::ng-deep .pagination .page-item.active .page-link{
+    background-color: #F8F8F8 !important;
+    color: black;
+}
+ngb-pagination ::ng-deep .pagination .page-item.disabled .page-link{
+    color: #A0AEC0 !important;
+}
+ngb-pagination ::ng-deep .pagination{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+}
+ngb-pagination ::ng-deep .pagination .page-item .page-link[aria-label='Previous'],
+ngb-pagination ::ng-deep .pagination .page-item .page-link[aria-label='Next']{
+    border: 1px solid #f3f5f7;
+}
+ngb-pagination ::ng-deep .pagination .page-item .page-link[aria-label='Previous']{
+    margin-right: 24px;
+}
+ngb-pagination ::ng-deep .pagination .page-item .page-link[aria-label='Next']{
+    margin-left: 24px;
+}
+.pagination-content .text{
+    font-size: 15px;
+    color: #8b9099;
+    font-weight: 500;
+
+}
+.pagination-content{
+    flex-grow: 1;
+    align-content: flex-end !important;
+    margin-top: 15px;
+}
+p-dropdown.p-element.p-inputwrapper.pagination{
+    border: 1px solid #F1F2F4;
+    border-radius: 8px;
+}
+:host ::ng-deep .pagination-content .p-dropdown {
+    min-height: 32px;
+    background-color: white;
+}
+:host ::ng-deep .pagination-content .p-dropdown-label{
+    padding: 8px;
+}
+:host ::ng-deep .pagination-content .p-dropdown .p-dropdown-panel{
+    /* transform: translateY(-100%) !important; */
+}
+.flex-wrap{
+    gap:16px;
+}
+.pagination-content .text{
+    margin-top: 5px;
+}
+@media(max-width: 375px){
+    ngb-pagination ::ng-deep .pagination .page-item .page-link[aria-label='Previous']{
+        margin-right: 2px;
+    }
+    ngb-pagination ::ng-deep .pagination .page-item .page-link[aria-label='Next']{
+        margin-left: 2px;
+    }
+}
