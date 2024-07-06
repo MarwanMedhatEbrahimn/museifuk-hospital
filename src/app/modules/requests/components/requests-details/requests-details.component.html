@@ -76,7 +76,7 @@
             Confirm
             <i *ngIf="isLoadingConfirm" class="fa-spin fas fa-spinner"></i>
         </button>
-        <button class="btn"[disabled]="isLoadingRemove || isLoadingConfirm" (click)="removeRequest()" *ngIf="details.state=='label created' || details.state=='cancelled'">
+        <button class="btn"[disabled]="isLoadingRemove || isLoadingConfirm" (click)="removeRequest()" *ngIf="details.state=='label created' || details.state=='in progress'">
             Cancel Request
             <i *ngIf="isLoadingRemove" class="fa-spin fas fa-spinner"></i>
         </button>

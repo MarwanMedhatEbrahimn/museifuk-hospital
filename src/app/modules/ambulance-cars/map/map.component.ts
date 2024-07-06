@@ -45,6 +45,7 @@ export class MapComponent implements AfterViewInit, OnChanges {
   carNumber: number = 0
   constructor(private pusherService: PusherService, private cdr: ChangeDetectorRef) { 
     this.pusherService.channelName = `car_${this.carDetails.carNumber}`
+    this.pusherService.createCannel()
     pusherService.bind('positionUpdated', (data:any) => {
       console.log('Received event:', data);
       const newCenter: L.LatLngExpression = [data.lastLocation.coordinates.coordinates[0], data.lastLocation.coordinates.coordinates[1]];

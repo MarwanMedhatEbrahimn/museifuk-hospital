@@ -40,7 +40,7 @@ export class PlasmaComponent implements OnInit{
     this.addEditPlasma = new FormGroup({
       name: new FormControl('',[Validators.required,Validators.minLength(3)]),
       quantity: new FormControl('',[Validators.required,Validators.pattern(this.validation.numerical)]),
-      expiry_date: new FormControl('',[Validators.required])
+      expiry_date: new FormControl('',[])
     })
     this.getAllPlasma()
     this.minDate = new Date()

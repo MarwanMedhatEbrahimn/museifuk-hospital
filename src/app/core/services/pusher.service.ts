@@ -6,16 +6,16 @@ import * as APusher from 'pusher-js';
 })
 export class PusherService {
    private pusher!: Pusher;
-   private channel: APusher.Channel;
+   private channel!: Channel;
    channelName: string =  ''
    constructor() {
      this.pusher = new Pusher('ea80cde6e77453dc1bf5', {
        cluster: 'mt1',
      });
- 
-     this.channel = this.pusher.subscribe(this.channelName);
+    }
+  createCannel(){
+    this.channel = this.pusher.subscribe(this.channelName);
    }
- 
    bind(eventName: string, callback: (data: any) => void) {
      this.channel.bind(eventName, callback);
    }

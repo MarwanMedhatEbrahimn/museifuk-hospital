@@ -139,6 +139,7 @@ export class DriversComponent implements OnInit{
       )
     }
     else{
+      delete payload['password']
       this._api.patchReq('/api/ambulance/driver'+this.DriverId,payload).subscribe(
         (res)=>{
           this.notificationService.success('',res?.message || "Driver Edit Successful");

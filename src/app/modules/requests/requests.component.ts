@@ -34,6 +34,7 @@ export class RequestsComponent implements OnInit, OnDestroy{
   ngOnInit(): void {
     this.getAllRequests();
     this.pusherService.channelName= 'newRequestCar-channel'
+    this.pusherService.createCannel()
     this.pusherService.bind('newRequestCar', (data: any) => {
         console.log('newRequestCar:', data);
         this.dataTable = [data,...this.dataTable]

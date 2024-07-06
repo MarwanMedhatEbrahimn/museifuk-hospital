@@ -114,7 +114,7 @@
                   </app-form-errors>
                 </div>
             </div>
-            <div class="row mb-5 g-2">
+            <div *ngIf="isAdd" class="row mb-5 g-2">
                 <div class="col-md-12">
                   <label for="password" class="form-label">password</label>
                   <input type="password" formControlName="password" class="form-control" id="password">
