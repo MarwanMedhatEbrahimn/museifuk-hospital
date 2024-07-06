@@ -17,6 +17,7 @@
     <a class="Options_link" [class.active]="current_Router == '3'" (click)="changeRouter('3')">Completed Requests</a> 
     <a class="Options_link" [class.active]="current_Router == '4'" (click)="changeRouter('4')">Cancelled Requests</a> 
   </div>
+  
   <ng-container *ngIf="current_Router==1 && !isEdit">
     <app-new-requests (openDetails)="onOpenDetails($event)" [dataTable]="dataTable" [serverErrorFetch]="serverErrorFetch" [isLoading]="isLoading"></app-new-requests>
   </ng-container>

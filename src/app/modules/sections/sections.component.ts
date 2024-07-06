@@ -43,17 +43,10 @@ export class SectionsComponent implements OnInit{
   })
     this.getAllDepartment()
   }
-  getDepartment():Observable<any>{
-    return this._api.getReq('/api/hospital/gethospital',{params:{}})
-  }
+
   getAllDepartment(){
-    this.activatedRoute.queryParams.pipe(
-      tap(()=>{
-        this.isLoading = true
-      }),switchMap(()=>{
-        return this.getDepartment()
-      })
-    ).subscribe(
+    this.isLoading = true;
+    this._api.getReq('/api/hospital/gethospital',{params:{}}).subscribe(
       (res)=>{
         this.successCallBackForGetTeams(res)
       },

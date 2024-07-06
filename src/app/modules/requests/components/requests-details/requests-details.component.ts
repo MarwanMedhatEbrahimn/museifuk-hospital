@@ -50,7 +50,7 @@ export class RequestsDetailsComponent {
   }
   removeRequest(){
     this.isLoadingRemove = true
-    this.api.deleteReq('/ambulance/requestscar/'+this.details._id).subscribe(
+    this.api.putReq('/api/cancel-request/'+this.details._id).subscribe(
       (res)=>{
         this.isLoadingRemove = false
         this.notificationService.success('',res?.message);

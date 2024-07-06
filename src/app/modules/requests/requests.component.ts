@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { HttpService } from './../../core/services/http.service';
 import { Observable, switchMap, tap } from 'rxjs';
 import { OnInit } from '@angular/core';
@@ -10,7 +10,7 @@ import { PusherService } from 'src/app/core/services/pusher.service';
   templateUrl: './requests.component.html',
   styleUrls: ['./requests.component.scss']
 })
-export class RequestsComponent implements OnInit{
+export class RequestsComponent implements OnInit, OnDestroy{
   current_Router: any = '1'
 
   isLoadingSubmit:boolean = false
@@ -36,12 +36,17 @@ export class RequestsComponent implements OnInit{
     this.pusherService.channelName= 'newRequestCar-channel'
     this.pusherService.bind('newRequestCar', (data: any) => {
         console.log('newRequestCar:', data);
-        this.dataTable.push(data)
-        this.allRequests.push(data)
+        this.dataTable = [data,...this.dataTable]
+        this.allRequests = [data,...this.allRequests]
     });
     this.pusherService.bind('pusher:subscription_succeeded', () => {
         console.log('Subscribed to channel');
     });
+  }
+  ngOnDestroy(): void{
+    this.pusherService.unbind('newRequestCar:')
+    this.pusherService.unbind('pusher:subscription_succeeded')
+
   }
   constructor(
     private _api:HttpService,
@@ -110,7 +115,7 @@ export class RequestsComponent implements OnInit{
       },
       (err)=>{
         if(err?.error?.Errors){
-          this.serverErrorFetch = err?.error?.Errors[0]?.errorMsg||'Something wrong happened, please try again later';
+          this.serverErrorFetch = err?.error?.Errors[0]?.message||'Something wrong happened, please try again later';
         }else{
           this.serverErrorFetch = 'Something wrong happened, please try again later'
         }

@@ -47,6 +47,7 @@ export class DriversComponent implements OnInit{
   }
   
   getAllDriver(){
+    this.isLoading = true;
     this._api.getReq('/api/ambulance/driver',{params:{}}).subscribe(
       (res)=>{
         this.successCallBackForGetTeams(res)

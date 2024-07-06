@@ -9,19 +9,7 @@ import { Location } from '@angular/common';
 export class HttpService {
 
   baseURL = "https://musifuk-be.vercel.app";
-  // baseURLDomain :any=environment.baseurlDomain
-  // domain:any=environment.domain
-  // subDomainName:any = ''
-  constructor(private http: HttpClient
-              ) { 
-                // if(window.location.origin.includes(`.${this.domain}`)){
-                //  this.subDomainName= window.location.origin.split('://')[1].split('.')[0]
-                //   // this.baseURL=`https://${subDomainName}${this.baseURLDomain}`
-
-                // }
-              }
-
-      
+  constructor(private http: HttpClient) { }
 
   getReq(path: string, options?: Object): Observable<any> {
     return this.http.get(`${this.baseURL}${path}`, options);

@@ -126,10 +126,15 @@ export class AmbulanceCarsComponent implements OnInit{
       carNumber:row.carNumber,
       location:row.location,
       assignedDriver:row.driver._id,
-
+      lastLocation:{
+        coordinates:{
+          type:'Point',
+          coordinates:[30.547746, 31.037486]
+        }
+      }
     }
     if(this.isAdd){
-      this._api.postReq('/api/ambulance/car/',payload).subscribe(
+      this._api.postReq('/api/ambulance/car',payload).subscribe(
         (res)=>{
           this.notificationService.success('',res?.Message);
           this.getAllAmbulance();
@@ -160,7 +165,7 @@ export class AmbulanceCarsComponent implements OnInit{
       )
     }
     else{
-      this._api.patchReq('/api/ambulance/car/'+this.AmbulanceId,payload).subscribe(
+      this._api.patchReq('/api/ambulance/car'+this.AmbulanceId,payload).subscribe(
         (res)=>{
           this.notificationService.success('',res?.Message);
           this.getAllAmbulance();

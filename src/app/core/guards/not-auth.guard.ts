@@ -6,11 +6,7 @@ export const notAuthGuard: CanActivateFn = (route, state) => {
   const authService = inject(AuthService);
   const router = inject(Router);
 
-  if (authService.getUserObj() && authService.getRole()=="Owner") {
-    router.navigate(['/dashboard']);
-    return false;
-  }
-  else if (authService.getUserObj() && authService.getRole()=="Admin") {
+  if (authService.getUserObj()) {
     router.navigate(['/dashboard']);
     return false;
   }

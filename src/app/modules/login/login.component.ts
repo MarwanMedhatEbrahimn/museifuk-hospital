@@ -61,7 +61,6 @@ export class LoginComponent {
         this.auth.setUserObj(res.result.admin);
         this.auth.setUserToken(res.result.token);
         this.auth.setRole(res.result.role);
-        console.log(res.result.role)
         this.router.navigate(['/dashboard']);
         this.notificationService.success('', res?.message ||"Login successful");
         this.isLoadingSubmit = false;

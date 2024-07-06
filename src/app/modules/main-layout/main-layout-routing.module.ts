@@ -56,14 +56,18 @@ export class MainLayoutRoutingModule {
   constructor(private auth: AuthService){
     this.role = auth.getRole();
     if(this.role == 'Owner'){
-      routes[0].children?.push({path:'' ,redirectTo:'patients' ,pathMatch:'full',
-        canLoad:[authHospitalGuard]
-      })
+      routes[0].children?.push({
+          path:'' ,redirectTo:'patients' ,pathMatch:'full',
+          canLoad:[authHospitalGuard]
+        }
+      )
     }
     else{
-      routes[0].children?.push({path:'' ,redirectTo:'requests' ,pathMatch:'full',
-        canLoad:[authEmergencyGuard]
-      })
+      routes[0].children?.push({
+          path:'' ,redirectTo:'requests' ,pathMatch:'full',
+          canLoad:[authEmergencyGuard]
+        }
+      )
     }
   }
 }
