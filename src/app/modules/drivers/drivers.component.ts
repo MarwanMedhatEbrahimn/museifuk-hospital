@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NotificationsService } from 'angular2-notifications';
-import { Observable, switchMap, tap } from 'rxjs';
 import { ErrorHandlingService } from 'src/app/core/services/error-handling.service';
 import { HttpService } from 'src/app/core/services/http.service';
 import { ValidationService } from 'src/app/core/services/validation.service';
@@ -40,7 +39,7 @@ export class DriversComponent implements OnInit{
       name: new FormControl('',[Validators.required,Validators.minLength(3)]),
       licenseNumber: new FormControl('',[Validators.required]),
       contactNumber: new FormControl('',[Validators.required]),
-      email: new FormControl('',[Validators.required]),
+      email: new FormControl('',[Validators.required, Validators.pattern(this.validation.emailPattern)]),
       password: new FormControl('',[Validators.required]),
     })
     this.getAllDriver()
