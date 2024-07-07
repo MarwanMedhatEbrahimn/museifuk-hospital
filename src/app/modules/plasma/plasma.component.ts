@@ -125,7 +125,7 @@ export class PlasmaComponent implements OnInit{
       expiryDate:this.addEditPlasma?.value?.expiry_date
     }
     if(this.isAdd){
-      this._api.postReq('/api/update-medical-equipment',payload).subscribe(
+      this._api.postReq('/api/update-serums-Vaccines',payload).subscribe(
         (res)=>{
           this.notificationService.success('',res?.message);
           this.getAllPlasma();
@@ -142,7 +142,7 @@ export class PlasmaComponent implements OnInit{
       )
     }
     else{
-      this._api.postReq('/api/update-medical-equipment',payload).subscribe(
+      this._api.postReq('/api/update-serums-Vaccines',payload).subscribe(
         (res)=>{
           this.notificationService.success('',res?.message);
           this.getAllPlasma();

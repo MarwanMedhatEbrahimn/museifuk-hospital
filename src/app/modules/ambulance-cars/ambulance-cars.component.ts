@@ -48,19 +48,10 @@ export class AmbulanceCarsComponent implements OnInit{
       driver: new FormControl('',[]),
     })
     this.getAllAmbulance() 
-    this.getAllDrivers()
-  }
-  getAmbulance():Observable<any>{
-    return this._api.getReq('/api/ambulance/car',{params:{}})
   }
   getAllAmbulance(){
-    this.activatedRoute.queryParams.pipe(
-      tap((params)=>{
-        this.isLoading = true
-      }),switchMap((params)=>{
-        return this.getAmbulance()
-      })
-    ).subscribe(
+    this.isLoading = true
+    this._api.getReq('/api/ambulance/car',{params:{}}).subscribe(
       (res)=>{
         this.successCallBackForGetTeams(res)
       },
@@ -74,6 +65,7 @@ export class AmbulanceCarsComponent implements OnInit{
     this.dataTable = this.allAmbulance
     this.isLoading = false;
     this.serverErrorFetch = null;
+    this.getAllDrivers()
   }
   errorCallBackForGetTeams(err: any){
 //  use error handling service
@@ -103,6 +95,9 @@ export class AmbulanceCarsComponent implements OnInit{
     this.addAmbulance = true
     this.onHide()
     if(!isAdd){
+      this.drive = row?.assignedDriver
+      if(this.drive?._id)
+        this.drivers.push(this.drive)
       this.AmbulanceId = row._id 
       this.addEditAmbulance.patchValue({
         carNumber:row.carNumber,
@@ -165,9 +160,9 @@ export class AmbulanceCarsComponent implements OnInit{
       )
     }
     else{
-      this._api.patchReq('/api/ambulance/car'+this.AmbulanceId,payload).subscribe(
+      this._api.patchReq('/api/ambulance/car/'+this.AmbulanceId,payload).subscribe(
         (res)=>{
-          this.notificationService.success('',res?.Message);
+          this.notificationService.success('',res?.message||"Car edit Successfully");
           this.getAllAmbulance();
           this.onHide();
           this.isLoadingSubmit = false
@@ -200,13 +195,16 @@ export class AmbulanceCarsComponent implements OnInit{
   onHide(){
     this.addEditAmbulance.reset();
     this.addEditAmbulance.markAsUntouched();
+    if(this.drive?._id)
+      this.drivers = this.drivers.filter(e=>{return this.drive._id!=e._id})
+    this.drive = null
   }
   openMap(row: any){
     this.carDetails = row;
     console.log(this.carDetails);
     this.showMap = true;
   }
-
+  drive:any = null
   drivers: any[] = []
   isLoadingDriver: boolean = false
   errLoadingDriver: boolean = false
@@ -216,6 +214,15 @@ export class AmbulanceCarsComponent implements OnInit{
       (res)=>{
         this.drivers = res ? res : []
         this.isLoadingDriver = false
+        this.drivers = this.drivers.filter(ele=>{
+          let flag = true
+          this.allAmbulance.forEach(e=>{
+            if(ele._id==e?.assignedDriver?._id){
+              flag = false
+            }
+          })
+          return flag
+        })
       },
       (err)=>{
         this.notificationService.error('','Error in Loading Drivers')
